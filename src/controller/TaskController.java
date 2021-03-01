@@ -12,8 +12,14 @@ public class TaskController {
 	}
 	
 	public void process(String so) {
+		String command;
+		if(so.equals("Windows 10")) {
+			command = "TASKLIST /FO TABLE";
+		}else {
+			command = "ps -ef";
+		}
 		try {
-			String command = "TASKLIST /FO TABLE";
+			
 			Process process = Runtime.getRuntime().exec(command);
 			InputStream fluxo = process.getInputStream();
 			InputStreamReader leitor = new InputStreamReader(fluxo);
